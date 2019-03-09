@@ -11,14 +11,14 @@ window.onload = function(){
 	document.getElementById("menu").innerHTML = menu_html;
 
 	menuOnClick("menu_item1");	
-}
+};
 
 function menuOnClick(key) {
 	var content_json = JSON.parse (JSON.stringify (content));
 	var active_menu_items = document.getElementsByClassName("top_menu_item");	
 	[].forEach.call(active_menu_items, function(el) {
 		el.classList.remove("active");
-	})
+	});
 
 	document.getElementById("demo").innerHTML = content_json[key];
 	document.getElementById(key).classList.add('active');
