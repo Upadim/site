@@ -1,6 +1,7 @@
+var requestURL = 'https://upadim.github.io/site/public_html/json/data.json';
+var request = new XMLHttpRequest();
+
 window.onload = function(){
-        var requestURL = 'https://upadim.github.io/site/public_html/json/data.json';
-        var request = new XMLHttpRequest();
         request.open('GET', requestURL);
         request.responseType = 'json';
         request.send();
@@ -23,8 +24,6 @@ window.onload = function(){
 };
 
 function menuOnClick(key) {
-        var requestURL = 'https://upadim.github.io/site/public_html/json/data.json';
-        var request = new XMLHttpRequest();
         request.open('GET', requestURL);
         request.responseType = 'json';
         request.send();
