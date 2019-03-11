@@ -36,7 +36,7 @@ function menuOnClick(key) {
 		el.classList.remove("active");
             });
 
-            document.getElementById("demo").innerHTML = content_json.content[key];
+            document.getElementById("content").innerHTML = content_json.content[key];
             document.getElementById(key).classList.add('active');   
         };
 }
