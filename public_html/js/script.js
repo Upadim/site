@@ -2,25 +2,25 @@ var requestURL = 'https://upadim.github.io/site/public_html/json/data.json';
 var request = new XMLHttpRequest();
 
 window.onload = function(){
-        request.open('GET', requestURL);
-        request.responseType = 'json';
-        request.send();
- 
-        request.onload = function() {
-            var menu_json = request.response;
-   
-            var menu_html = '<ul>';
-            for (var key in menu_json.menu) {
-                    menu_html = menu_html + '<li id = "' + key + '" class="' + key + ' top_menu_item" onClick="menuOnClick(\'' + key + '\')">';
-                    menu_html = menu_html + menu_json.menu[key];
-                    menu_html = menu_html + '</li>';
-            }
-            menu_html = menu_html + '</ul>';
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
 
-            document.getElementById("menu").innerHTML = menu_html;
+    request.onload = function() {
+        var menu_json = request.response;
 
-            menuOnClick("menu_item1");	
-        };
+        var menu_html = '<ul>';
+        for (var key in menu_json.menu) {
+                menu_html = menu_html + '<li id = "' + key + '" class="' + key + ' top_menu_item" onClick="menuOnClick(\'' + key + '\')">';
+                menu_html = menu_html + menu_json.menu[key];
+                menu_html = menu_html + '</li>';
+        }
+        menu_html = menu_html + '</ul>';
+
+        document.getElementById("menu").innerHTML = menu_html;
+
+        menuOnClick("menu_item1");	
+    };
 };
 
 function menuOnClick(key) {
@@ -39,4 +39,20 @@ function menuOnClick(key) {
             document.getElementById("content").innerHTML = content_json.content[key];
             document.getElementById(key).classList.add('active');   
         };
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("content", ev.target.textContent);
+    console.log(ev.target.id);
+}
+function drop(ev, block) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    console.log(data);
+
+    block.appendChild(document.getElementById(data));
 }

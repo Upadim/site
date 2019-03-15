@@ -1,14 +1,27 @@
 <html>
-	<head>
-                <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-                <link href="css/style.css" rel="stylesheet" type="text/css"/>
-		<script src="js/script.js"></script>
-		<title>Hello world</title>
-	</head>
-	<body>
-		<h1>Hello world</h1> 
-		<div id="menu"></div>
-		<div class="clear"></div>
-		<div class="content" id="content"></div>
-	</body>
+    <head>
+            <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+            <link href="css/style.css" rel="stylesheet" type="text/css"/>
+            <script src="js/script.js"></script>              
+            <title>Hello world</title>
+    </head>
+        <body>
+            <h1>Hello world</h1> 
+            <div id="menu"></div>
+            <div class="clear"></div>
+            <div class="content" id="content"></div>
+            <div id="game">
+                <div id="cell_1_1" class="cell" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                    <div id="cell_content_1" class="cell_content" draggable="true" ondragstart="drag(event)">1</div>                    
+                </div>
+                <div id="cell_1_2" class="cell" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                    <div id="cell_content_2" class="cell_content" draggable="true" ondragstart="drag(event)">2</div>               
+                </div>
+                <div id="cell_1_3" class="cell" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                    <div id="cell_content_3" class="cell_content" draggable="true" ondragstart="drag(event)">3</div>                    
+                </div>
+                <div id="cell_1_4" class="cell" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                </div>
+            </div>                    
+        </body>
 </html>

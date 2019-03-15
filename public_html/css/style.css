@@ -13,3 +13,31 @@
 	clear: both;
 }
 
+.content {
+
+}
+
+#content {
+
+}
+
+.cell {
+    float: left;
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    margin-left: 1px;
+    margin-top: 1px;
+}
+
+.cell_content {
+    background-color: background;
+    color: black;
+    width: 46px;
+    height: 46px;
+    margin: 2px;    
+}
+
+#game {
+    margin-top: 50px;
+}
