@@ -52,11 +52,14 @@ function drag(ev) {
     ev.dataTransfer.setData("content", ev.target.textContent);
 }
 
-function drop(evt) {
-    evt.preventDefault();
-    var data = evt.dataTransfer.getData("text");
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+
     this.appendChild(document.getElementById(data));
+
     makeDropable();
+    makeDragable();
 }
 
 function buildGameBoard () {
@@ -69,9 +72,9 @@ function buildGameBoard () {
     var col = 1;
     
     for (i=1; i<=16; i++){
-        boardHtml = boardHtml + '<div id="cell_' + row + '_' + col + '" class="cell" ondragover="allowDrop(event)">';        
+        boardHtml = boardHtml + '<div id="cell_' + row + '_' + col + '" class="cell" ondragover="allowDrop(event)" unselectable="on">';        
         if (numbers[i-1]) {
-            boardHtml = boardHtml + '<div id="cell_content_' + numbers[i-1] + '" class="cell_content" draggable="true" ondragstart="drag(event)">' + numbers[i -1] + '</div>';
+            boardHtml = boardHtml + '<div id="cell_content_' + row + '_' + col + '" class="cell_content">' + numbers[i -1] + '</div>';
         }
         boardHtml = boardHtml + '</div>';
         if (col < 4){
@@ -89,6 +92,7 @@ function buildGameBoard () {
     document.getElementById('game').innerHTML = boardHtml;
 
     makeDropable();
+    makeDragable();
 }
 
 function makeDropable (){
@@ -102,11 +106,36 @@ function makeDropable (){
 }
 
 function makeDragable (){
-    cells = document.getElementById('game').getElementsByClassName('cell');   
+    var numbers = document.getElementById('game').getElementsByClassName('cell_content');
+    Array.prototype.forEach.call(numbers, function(number) {
+        number.removeAttribute('draggable');
+    });
+
+    var col_and_row;
+    var cells = document.getElementById('game').getElementsByClassName('cell');   
     Array.prototype.forEach.call(cells, function(cell) {
-        cell.removeEventListener("drop", drop);
         if (!cell.getElementsByClassName('cell_content').length){
-            cell.addEventListener("drop", drop);
+            col_and_row = cell.id.split("_");        
         }
+    });
+ 
+    var row = parseInt(col_and_row[1]);    
+    var col = parseInt(col_and_row[2]);
+    
+    var arr_cells = [];
+    arr_cells[0] = String.prototype.concat('cell_',row-1,'_',col);
+    arr_cells[1] = String.prototype.concat('cell_',row+1,'_',col);
+    arr_cells[2] = String.prototype.concat('cell_',row,'_',col-1);
+    arr_cells[3] = String.prototype.concat('cell_',row,'_',col+1);
+    
+    arr_cells.forEach(function(value){
+        var container_cell = document.getElementById(value);
+        if (typeof(container_cell) !== 'undefined' && container_cell !== null) {
+            var dragable_cell = container_cell.getElementsByClassName('cell_content');
+            if (dragable_cell.length) {
+                dragable_cell[0].setAttribute('draggable', true);
+                dragable_cell[0].addEventListener("dragstart", drag);
+            }
+        }        
     });
 }
