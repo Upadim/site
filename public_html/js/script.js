@@ -21,6 +21,8 @@ window.onload = function(){
 
         menuOnClick("menu_item1");	
     };
+    
+    buildGameBoard ();
 };
 
 function menuOnClick(key) {
@@ -44,15 +46,49 @@ function menuOnClick(key) {
 function allowDrop(ev) {
     ev.preventDefault();
 }
+
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
     ev.dataTransfer.setData("content", ev.target.textContent);
-    console.log(ev.target.id);
 }
-function drop(ev, block) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    console.log(data);
 
-    block.appendChild(document.getElementById(data));
+function drop(evt) {
+    evt.preventDefault();
+    var data = evt.dataTransfer.getData("text");
+    this.appendChild(document.getElementById(data));
+    makeDropable();
+}
+
+function buildGameBoard () {
+    var boardHtml = "";
+    var numbers = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].sort(function() {
+        return .5 - Math.random();
+    });
+
+    var row = 1;
+    
+    for (i=1; i<=16; i++){
+        boardHtml = boardHtml + '<div id="cell_' + row + '_' + i + '" class="cell" ondragover="allowDrop(event)">';        
+        if (numbers[i-1]) {
+            boardHtml = boardHtml + '<div id="cell_content_' + numbers[i-1] + '" class="cell_content" draggable="true" ondragstart="drag(event)">' + numbers[i -1] + '</div>';
+        }
+        boardHtml = boardHtml + '</div>';
+        if (i%4 === 0){
+            boardHtml = boardHtml + '<div class="clear"></div>';
+        }   
+    }
+     
+    document.getElementById('game').innerHTML = boardHtml;
+
+    makeDropable();
+}
+
+function makeDropable (){
+    cells = document.getElementById('game').getElementsByClassName('cell');   
+    Array.prototype.forEach.call(cells, function(cell) {
+        cell.removeEventListener("drop", drop);
+        if (!cell.getElementsByClassName('cell_content').length){
+            cell.addEventListener("drop", drop);
+        }
+    });
 }

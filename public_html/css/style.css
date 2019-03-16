@@ -1,16 +1,16 @@
 #menu ul{
-	padding-left: 0;
+    padding-left: 0;
 }
 
 .top_menu_item {
-	float: left;
-	list-style-type: none;
-	padding-right: 50px;
-	cursor: hand;
+    float: left;
+    list-style-type: none;
+    padding-right: 50px;
+    cursor: hand;
 }
 
 .clear{
-	clear: both;
+    clear: both;
 }
 
 .content {
@@ -32,10 +32,13 @@
 
 .cell_content {
     background-color: background;
-    color: black;
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    line-height: 46px;
     width: 46px;
     height: 46px;
-    margin: 2px;    
+    margin: 2px;
 }
 
 #game {
