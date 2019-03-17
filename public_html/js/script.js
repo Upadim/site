@@ -73,7 +73,7 @@ function buildGameBoard() {
         return .5 - Math.random();
     });
     
-    //Array to test a win (just one move is needed
+    //Array to test a win state (just one move is needed
     //numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15];
 
     var row = 1;
@@ -82,7 +82,7 @@ function buildGameBoard() {
     for (i=1; i<=16; i++){
         boardHtml = boardHtml + '<div id="cell_' + row + '_' + col + '" class="cell" ondragover="allowDrop(event)" unselectable="on">';        
         if (numbers[i-1]) {
-            boardHtml = boardHtml + '<div id="cell_content_' + row + '_' + col + '" class="cell_content" ondragstart = "drag(event)">' + numbers[i -1] + '</div>';
+            boardHtml = boardHtml + '<div id="cell_content_' + row + '_' + col + '" class="cell_content" ondragstart = "drag(event)" ondragend = dragEnd(event)>' + numbers[i -1] + '</div>';
         }
         boardHtml = boardHtml + '</div>';
         if (col < 4){
@@ -99,7 +99,6 @@ function buildGameBoard() {
      
     document.getElementById('game_board').innerHTML = boardHtml;
     
-
     makeDropable();
     makeDraggable();
 }
@@ -118,6 +117,7 @@ function makeDraggable (){
     var numbers = document.getElementById('game_board').getElementsByClassName('cell_content');
     Array.prototype.forEach.call(numbers, function(number) {
         number.removeAttribute('draggable');
+        number.classList.remove('draggable');
     });
 
     var col_and_row;
@@ -143,6 +143,7 @@ function makeDraggable (){
             var dragable_cell = container_cell.getElementsByClassName('cell_content');
             if (dragable_cell.length) {
                 dragable_cell[0].setAttribute('draggable', true);
+                dragable_cell[0].classList.add ('draggable');
             }
         }        
     });
@@ -178,4 +179,8 @@ function checkBoardState(){
 function theWin(){
     var win = '<div id="win">Победа!!!</div>';
     document.getElementById("game_board").innerHTML = win;
+}
+
+function dragEnd(evt){
+    
 }
