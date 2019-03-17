@@ -62,3 +62,16 @@
     -ms-user-select: none;
     user-select: none;     
 }
+
+#game_board{
+    width: 213px;
+    height: 213px;
+    border: 1px solid black;
+}
+
+#win{
+    color: #006600;
+    font-size: 30px;
+    text-align: center;
+    line-height: 212px;
+}

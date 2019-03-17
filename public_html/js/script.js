@@ -23,6 +23,7 @@ window.onload = function(){
     };
     
     buildGameBoard ();
+    buldGameControls();
 };
 
 function menuOnClick(key) {
@@ -58,15 +59,22 @@ function drop(ev) {
 
     this.appendChild(document.getElementById(data));
 
-    makeDropable();
-    makeDragable();
+    if (!checkBoardState()){
+        makeDropable();
+        makeDraggable();
+    } else {
+        theWin();
+    }
 }
 
-function buildGameBoard () {
+function buildGameBoard() {
     var boardHtml = "";
     var numbers = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].sort(function() {
         return .5 - Math.random();
     });
+    
+    //Array to test a win (just one move is needed
+    //numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15];
 
     var row = 1;
     var col = 1;
@@ -74,7 +82,7 @@ function buildGameBoard () {
     for (i=1; i<=16; i++){
         boardHtml = boardHtml + '<div id="cell_' + row + '_' + col + '" class="cell" ondragover="allowDrop(event)" unselectable="on">';        
         if (numbers[i-1]) {
-            boardHtml = boardHtml + '<div id="cell_content_' + row + '_' + col + '" class="cell_content">' + numbers[i -1] + '</div>';
+            boardHtml = boardHtml + '<div id="cell_content_' + row + '_' + col + '" class="cell_content" ondragstart = "drag(event)">' + numbers[i -1] + '</div>';
         }
         boardHtml = boardHtml + '</div>';
         if (col < 4){
@@ -89,14 +97,15 @@ function buildGameBoard () {
         }   
     }
      
-    document.getElementById('game').innerHTML = boardHtml;
+    document.getElementById('game_board').innerHTML = boardHtml;
+    
 
     makeDropable();
-    makeDragable();
+    makeDraggable();
 }
 
 function makeDropable (){
-    cells = document.getElementById('game').getElementsByClassName('cell');   
+    cells = document.getElementById('game_board').getElementsByClassName('cell');   
     Array.prototype.forEach.call(cells, function(cell) {
         cell.removeEventListener("drop", drop);
         if (!cell.getElementsByClassName('cell_content').length){
@@ -105,14 +114,14 @@ function makeDropable (){
     });
 }
 
-function makeDragable (){
-    var numbers = document.getElementById('game').getElementsByClassName('cell_content');
+function makeDraggable (){
+    var numbers = document.getElementById('game_board').getElementsByClassName('cell_content');
     Array.prototype.forEach.call(numbers, function(number) {
         number.removeAttribute('draggable');
     });
 
     var col_and_row;
-    var cells = document.getElementById('game').getElementsByClassName('cell');   
+    var cells = document.getElementById('game_board').getElementsByClassName('cell');   
     Array.prototype.forEach.call(cells, function(cell) {
         if (!cell.getElementsByClassName('cell_content').length){
             col_and_row = cell.id.split("_");        
@@ -134,8 +143,39 @@ function makeDragable (){
             var dragable_cell = container_cell.getElementsByClassName('cell_content');
             if (dragable_cell.length) {
                 dragable_cell[0].setAttribute('draggable', true);
-                dragable_cell[0].addEventListener("dragstart", drag);
             }
         }        
     });
+}
+
+function buldGameControls(){
+    rebuild_btn = '<input type="submit" value="Начать сначала" onclick="buildGameBoard()">';
+    document.getElementById("game_controls").innerHTML = rebuild_btn;
+}
+
+function checkBoardState(){
+    var result = true;
+    var cells = document.getElementById('game_board').getElementsByClassName('cell');
+    var i = 0;
+    Array.prototype.forEach.call(cells, function(cell) {
+        if (i >= 15) {
+           return result;     
+        } else {
+            i++;
+        }
+        var cell_content = cell.getElementsByClassName('cell_content');
+        if (cell_content.length) {
+            if (i !== parseInt(cell_content[0].innerHTML)) {
+                result = false;
+            }
+        } else {
+            result = false;
+        }
+    });
+    return result;
+}
+
+function theWin(){
+    var win = '<div id="win">Победа!!!</div>';
+    document.getElementById("game_board").innerHTML = win;
 }
