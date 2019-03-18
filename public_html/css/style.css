@@ -1,4 +1,3 @@
-@media handheld {
     #menu ul{
         padding-left: 0;
     }
@@ -93,7 +92,7 @@
         cursor: -moz-grabbing;
         cursor: -webkit-grabbing;
     }
-}
+
 
 @media only screen 
   and (min-device-width: 375px) 
