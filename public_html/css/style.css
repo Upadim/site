@@ -146,4 +146,34 @@
         user-select: none;     
     }
     
+    #game_board{
+        width: 213px;
+        height: 213px;
+        border: 1px solid black;
+    }
+
+    #win{
+        color: #006600;
+        font-size: 30px;
+        text-align: center;
+        line-height: 212px;
+    }
+
+    #game_controls{
+        margin-top: 10px;
+    }
+
+    .draggable {
+        cursor: move;
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+    }
+
+    .draggable:active {
+        cursor: grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
+    }    
+    
 }
