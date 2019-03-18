@@ -94,8 +94,12 @@
         cursor: -webkit-grabbing;
     }
 }
-@media handheld {
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
     body {
-        background-color: yallow;
+        background-color: yellow;
     }
 }
