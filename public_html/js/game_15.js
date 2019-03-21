@@ -1,11 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-console.log ("We are in a new JS file");
-
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -143,11 +135,10 @@ function theWin(){
     document.getElementById("game_board").innerHTML = win;
 }
 
-function dragEnd(evt){
-    
-}
+document.addEventListener("DOMContentLoaded", function(event) {
+    buildGameBoard ();
+    buldGameControls();   
+});
 
-buildGameBoard ();
-buldGameControls();
 
 
