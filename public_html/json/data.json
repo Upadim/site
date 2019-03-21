@@ -2,21 +2,25 @@
     "menu": {
         "menu_item1": {
             "name": "About Us",
+            "url":"index.html",
             "load_js": "",
             "load_css": ""
         },
         "menu_item2": {
             "name": "Services",
+            "url":"services.html",            
             "load_js": "",
             "load_css": ""            
         },
         "menu_item3": {
             "name": "Products",
+            "url":"products.html",            
             "load_js": "test.js",
             "load_css": ""                   
         },
         "menu_item4": {
             "name": "Contacts",
+            "url":"contacts.html",            
             "load_js": "",
             "load_css": ""
         }
