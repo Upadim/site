@@ -13,8 +13,8 @@
             "load_css": ""            
         },
         "menu_item3": {
-            "name": "Products",
-            "url":"products.html",            
+            "name": "Simple JS Game",
+            "url":"game15.html",            
             "load_js": "test.js",
             "load_css": ""                   
         },
