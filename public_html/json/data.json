@@ -15,7 +15,7 @@
         "menu_item3": {
             "name": "Simple JS Game",
             "url":"game15.html",            
-            "load_js": "test.js",
+            "load_js": "game_15.js",
             "load_css": ""                   
         },
         "menu_item4": {
