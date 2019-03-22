@@ -21,7 +21,7 @@
         "menu_item5": {
             "name": "Guess Word",
             "url":"guessword.html",            
-            "load_js": "",
+            "load_js": "guessword.js",
             "load_css": ""
         },	
         "menu_item4": {
