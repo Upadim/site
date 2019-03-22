@@ -1,3 +1,7 @@
+function dragEnd() {
+
+}
+
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -135,10 +139,8 @@ function theWin(){
     document.getElementById("game_board").innerHTML = win;
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    buildGameBoard ();
-    buldGameControls();   
-});
+buildGameBoard ();
+buldGameControls();   
 
 
 

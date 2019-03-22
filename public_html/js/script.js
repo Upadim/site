@@ -11,7 +11,6 @@ window.onload = function () {
 	var class_name;
 	var active_json_node;
 	var name = window.location.pathname.split("/").filter(function(c){return c.length;}).pop();
-	console.log(name);
 	
 	var menu_html = '<ul>';
 	for (var key in menu_json.menu) {
