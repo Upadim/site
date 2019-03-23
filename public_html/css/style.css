@@ -1,103 +1,108 @@
-    #menu ul{
-        padding-left: 0;
-    }
+#menu ul{
+    padding-left: 0;
+}
 
-    .top_menu_item {
-        float: left;
-        list-style-type: none;
-        padding-right: 50px;
-        cursor: pointer;
-    }
+.top_menu_item {
+    float: left;
+    list-style-type: none;
+    padding-right: 50px;
+    cursor: pointer;
+}
 
-    .clear{
-        clear: both;
-    }
+.clear{
+    clear: both;
+}
 
-    .content {
+.content {
 
-    }
+}
 
-    #content {
+#content {
 
-    }
+}
 
-    .cell {
-        float: left;
-        height: 50px;
-        width: 50px;
-        border: 1px solid black;
-        margin-left: 1px;
-        margin-top: 1px;
-        -webkit-touch-callout: none; /* iOS Safari */
-        -webkit-user-select: none; /* Safari */
-        -khtml-user-select: none; /* Konqueror HTML */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-        user-select: none; 
-    }
+.cell {
+    float: left;
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    margin-left: 1px;
+    margin-top: 1px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; 
+}
 
-    .cell_content {
-        background-color: background;
-        color: #ffffff;
-        font-size: 30px;
-        text-align: center;
-        line-height: 46px;
-        width: 46px;
-        height: 46px;
-        margin: 2px;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;     
-    }
+.cell_content {
+    background-color: background;
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    line-height: 46px;
+    width: 46px;
+    height: 46px;
+    margin: 2px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;     
+}
 
-    #game {
-        margin-top: 50px;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;     
-    }
+#game {
+    margin-top: 50px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;     
+}
 
-    #game_board{
-        width: 213px;
-        height: 213px;
-        border: 1px solid black;
-    }
+#game_board{
+    width: 213px;
+    height: 213px;
+    border: 1px solid black;
+}
 
-    #win{
-        color: #006600;
-        font-size: 30px;
-        text-align: center;
-        line-height: 212px;
-    }
+#win{
+    color: #006600;
+    font-size: 30px;
+    text-align: center;
+    line-height: 212px;
+}
 
-    #game_controls{
-        margin-top: 10px;
-    }
+#game_controls{
+    margin-top: 10px;
+}
 
-    .draggable {
-        cursor: move;
-        cursor: grab;
-        cursor: -moz-grab;
-        cursor: -webkit-grab;
-    }
+.draggable {
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
 
-    .draggable:active {
-        cursor: grabbing;
-        cursor: -moz-grabbing;
-        cursor: -webkit-grabbing;
-    }
+.draggable:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
 
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
-    body {
-        background-color: green;
-    }
+/* Hangman game*/
+
+.letter_container{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border: 1px dotted #000000;
+    border-bottom: 2px solid #000000;
+    float: left;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
 }
