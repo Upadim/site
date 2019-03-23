@@ -62,12 +62,11 @@ function buildWordBoard(word, callback) {
 }
 
 document.addEventListener("keypress", function(e){
-  console.log('Key pressed:' + e.key);
-  checkCharacter(e.key)
+  checkCharacter(e.key);
 });
 
 function checkCharacter(pressedChar){
-    
+  console.log('Key pressed:' + pressedChar);    
 }
 
 getWord(dir);
