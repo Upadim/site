@@ -24,10 +24,10 @@ function getWordCallback(myRequest) {
 function buildImageBoard() {
     var image;
     var i = 0;
-    var timerID = setTimeout ( function runAgain(){
-	if (i<12) {
+    var timerID = setTimeout(function runAgain() {
+	if (i < 12) {
 	    image = '<img src="img/hang_' + i + '.jpg" alt="hang_img"/>';
-	    document.getElementById("hang_container").innerHTML = image;	    
+	    document.getElementById("hang_container").innerHTML = image;
 	    timerID = setTimeout(runAgain, 500);
 	    i++;
 	} else {
@@ -44,8 +44,8 @@ function buildWordBoard(word, callback) {
     word_html = word_html + '<div id="word_container">';
     for (var i = 0; i < word_array.length; i++) {
 	console.log(word_array[i]);
-	word_html = word_html + '<div class="letter_container">';
-	if (i === 0 || i === word_array.length - 1) {
+	word_html = word_html + '<div class="letter_container" id = "letter_container_' + i + '" >';
+	if (i === 0 || i === word_array.length - 1 || word_array[i] === word_array[0] || word_array[i] === word_array[word_array.length - 1]) {
 	    word_html = word_html + word_array[i];
 	}
 	word_html = word_html + "</div>";
@@ -61,12 +61,21 @@ function buildWordBoard(word, callback) {
     callback();
 }
 
-document.addEventListener("keypress", function(e){
-  checkCharacter(e.key);
+document.addEventListener("keypress", function (e) {
+    checkCharacter(e.key);
 });
 
-function checkCharacter(pressedChar){
-  console.log('Key pressed:' + pressedChar);    
+function checkCharacter(pressedChar) {
+    var div_id;
+    console.log('Key pressed:' + pressedChar);
+    for (var i = 0; i < word_array.length; i++) {
+	if (word_array[i] === pressedChar) {
+	    console.log("Character " + pressedChar + " found at position " + i);
+	    div_id = 'letter_container_' + i;
+	    document.getElementById(div_id).innerHTML = pressedChar;
+	    
+	}
+    }
 }
 
 getWord(dir);
