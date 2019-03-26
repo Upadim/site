@@ -1,5 +1,6 @@
 var etalon_word_chars;
 var answer_chars;
+var pressed_keys = new Array();
 var errors = 0;
 var href = window.location.href;
 var dir = href.substring(0, href.lastIndexOf('/')) + "/";
@@ -37,7 +38,10 @@ function buildWordBoard(word, callback) {
     word_html = word_html + '<div id="word_container">';
     for (var i = 0; i < etalon_word_chars.length; i++) {
 	word_html = word_html + '<div class="letter_container" id = "letter_container_' + i + '" >';
-	if (i === 0 || i === etalon_word_chars.length - 1 || etalon_word_chars[i] === etalon_word_chars[0] || etalon_word_chars[i] === etalon_word_chars[etalon_word_chars.length - 1]) {
+	if (i === 0 
+		|| i === etalon_word_chars.length - 1 
+		|| etalon_word_chars[i] === etalon_word_chars[0] 
+		|| etalon_word_chars[i] === etalon_word_chars[etalon_word_chars.length - 1]) {
 	    word_html = word_html + etalon_word_chars[i];
 	    answer_chars[i] = etalon_word_chars[i];
 	}
@@ -45,7 +49,12 @@ function buildWordBoard(word, callback) {
     }
     word_html = word_html + '<div class = "clear"></div>';
     word_html = word_html + '</div>';
+    word_html = word_html + '<div id = "message_area">';
+    word_html = word_html + '</div>';    
     word_html = word_html + '<div id = "hang_container">';
+    word_html = word_html + '</div>';
+    word_html = word_html + '<div id = "controls_area">';
+    word_html = word_html + '<input type="submit" value="Начать сначала" onclick="getWord()">';
     word_html = word_html + '</div>';
     word_html = word_html + '</div>';
 
@@ -59,7 +68,7 @@ document.addEventListener("keypress", function (e) {
 });
 
 function executeCharPress (event){
-    if (!checkCharacter(event.key)) {
+    if (!checkCharacter(event.key) && !alreadyPressed(event.key)) {
 	wrongCharacter();
 	return;
     }
@@ -103,6 +112,16 @@ function checkWin(){
 	document.removeEventListener ("keypress", executeCharPress);
 	console.log ("You have won!");
     };
+}
+
+function alreadyPressed(char){
+    if(char){
+	pressed_keys.forEach(function(key, index, chars){
+	    if (key === char) return true;
+	});
+	pressed_keys.push(char);
+	return false;
+    }
 }
 
 function isEqual (etalon, answers) {
